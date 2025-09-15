@@ -41,7 +41,7 @@ public class KundenlisteDVL {
         }
 
         if(anfang.getKunde().equals(k)) {
-            this.anfang.getNachfolger().setVorgaenger(null);
+            this.anfang.getNachfolger().setVorgaenger(null); //nicht einfach null setzen??
             this.anfang = this.anfang.getNachfolger();
             return true;
         }
@@ -56,23 +56,50 @@ public class KundenlisteDVL {
         while(aktuellerKnoten != null && !aktuellerKnoten.getKunde().equals(k)) {
             aktuellerKnoten = aktuellerKnoten.getNachfolger();
         }
+
         if(aktuellerKnoten != null) {
             aktuellerKnoten.getVorgaenger().setNachfolger(aktuellerKnoten.getNachfolger());
-            aktuellerKnoten.getNachfolger().setVorgaenger(aktuellerKnoten.getNachfolger());
+            if (aktuellerKnoten.getNachfolger() != null) {
+                aktuellerKnoten.getNachfolger().setVorgaenger(aktuellerKnoten.getVorgaenger());
+            }
             return true;
         }
         return false;
     }
 
     public boolean entfernen(String name) {
+        if(istLeer()) {
+            return false;
+        }
+
+        Knoten anzahlKnoten = this.anfang;
+        int anzahlZuEntfernen = 0;
+
+        while(anzahlKnoten != null) {
+            if(anzahlKnoten.getKunde().getName().equalsIgnoreCase(name)) {
+                anzahlZuEntfernen++;
+            }
+            anzahlKnoten = anzahlKnoten.getNachfolger();
+        }
+
+        if(anzahlZuEntfernen == 0) return false;
+
+        Kunde[] kundenEntfernen = new Kunde[anzahlZuEntfernen];
+        int entfernenIndex = 0;
+
         Knoten aktuellerKnoten = this.anfang;
-        while(aktuellerKnoten != null && !aktuellerKnoten.getKunde().getName().equals(name)) {
+        while(aktuellerKnoten != null) {
+            if(aktuellerKnoten.getKunde().getName().equalsIgnoreCase(name)) {
+                kundenEntfernen[entfernenIndex] = aktuellerKnoten.getKunde();
+                entfernenIndex++;
+            }
             aktuellerKnoten = aktuellerKnoten.getNachfolger();
         }
-        if(aktuellerKnoten != null) {
-            return entfernen(aktuellerKnoten.getKunde());
+
+        for(int i = 0; i < kundenEntfernen.length; i++) {
+            entfernen(kundenEntfernen[i]);
         }
-        return false;
+        return true;
     }
 
     public int liefereAnzahlElemente() {
@@ -104,6 +131,10 @@ public class KundenlisteDVL {
     }
 
     public boolean suchen(Kunde k) {
+        if(istLeer()) {
+            return false;
+        }
+
         boolean gefunden = false;
         Knoten aktuellerKnoten = this.anfang;
         while(aktuellerKnoten != null) {
