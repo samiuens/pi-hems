@@ -9,8 +9,6 @@ public class Student {
     private LinkedList<Praktikum> praktika;
 
     public Student(String n, double d, int s) {
-        this.matrikelnummer = autowert;
-        autowert++;
         this.name = n;
         this.durchschnitt = d;
         this.semester = s;
@@ -30,7 +28,6 @@ public class Student {
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("%s (%s, Semester: %s) -> ".formatted(this.name, this.durchschnitt, this.semester));
-
         for(int i = 0; i < praktika.size(); i++) {
             sb.append(praktika.get(i).getBezeichnung());
             if(i < praktika.size() - 1) {
