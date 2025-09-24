@@ -41,8 +41,8 @@ public class KundenlisteDVL {
         }
 
         if(anfang.getKunde().equals(k)) {
-            this.anfang.getNachfolger().setVorgaenger(null); //nicht einfach null setzen??
             this.anfang = this.anfang.getNachfolger();
+            this.anfang.setVorgaenger(null);
             return true;
         }
 
@@ -67,39 +67,21 @@ public class KundenlisteDVL {
         return false;
     }
 
-    public boolean entfernen(String name) {
+    public int entfernen(String name) {
         if(istLeer()) {
-            return false;
+            return 0;
         }
 
-        Knoten anzahlKnoten = this.anfang;
         int anzahlZuEntfernen = 0;
-
-        while(anzahlKnoten != null) {
-            if(anzahlKnoten.getKunde().getName().equalsIgnoreCase(name)) {
-                anzahlZuEntfernen++;
-            }
-            anzahlKnoten = anzahlKnoten.getNachfolger();
-        }
-
-        if(anzahlZuEntfernen == 0) return false;
-
-        Kunde[] kundenEntfernen = new Kunde[anzahlZuEntfernen];
-        int entfernenIndex = 0;
-
         Knoten aktuellerKnoten = this.anfang;
         while(aktuellerKnoten != null) {
             if(aktuellerKnoten.getKunde().getName().equalsIgnoreCase(name)) {
-                kundenEntfernen[entfernenIndex] = aktuellerKnoten.getKunde();
-                entfernenIndex++;
+                anzahlZuEntfernen++;
+                entfernen(aktuellerKnoten.getKunde());
             }
             aktuellerKnoten = aktuellerKnoten.getNachfolger();
         }
-
-        for(int i = 0; i < kundenEntfernen.length; i++) {
-            entfernen(kundenEntfernen[i]);
-        }
-        return true;
+        return anzahlZuEntfernen;
     }
 
     public int liefereAnzahlElemente() {
@@ -151,11 +133,9 @@ public class KundenlisteDVL {
         int anzahlKunden = liefereAnzahlElemente();
         Kunde[] liste = new Kunde[anzahlKunden];
         if(!istLeer()) {
-            int i = 0;
             Knoten aktuellerKnoten = this.anfang;
-            while(aktuellerKnoten != null) {
+            for(int i = 0; i < anzahlKunden; i++) {
                 liste[i] = aktuellerKnoten.getKunde();
-                i++;
                 aktuellerKnoten = aktuellerKnoten.getNachfolger();
             }
             return liste;
@@ -167,11 +147,9 @@ public class KundenlisteDVL {
         int anzahlKunden = liefereAnzahlElemente();
         Kunde[] liste = new Kunde[anzahlKunden];
         if(!istLeer()) {
-            int i = 0;
             Knoten aktuellerKnoten = this.ende;
-            while(aktuellerKnoten != null) {
+            for(int i = 0; i < anzahlKunden; i++) {
                 liste[i] = aktuellerKnoten.getKunde();
-                i++;
                 aktuellerKnoten = aktuellerKnoten.getVorgaenger();
             }
             return liste;
