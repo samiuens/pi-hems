@@ -19,10 +19,10 @@ public class RekursiveMethoden {
         if(n < 10) return n;
         return ziffernsumme(n / 10) + n % 10;
     }
-    public int fibonacci(BigInteger n) {
-        if(n.equals(0)) return 0;
-        if(n.equals(1)) return 1;
-        return fibonacci(n.subtract()) + fibonacci(n.subtract(1));
+    public int fibonacci(int n) {
+        if(n == 0) return 0;
+        if(n == 1) return 1;
+        return fibonacci(n) + fibonacci(n - 1);
     }
 
     public RekursiveMethoden() {
