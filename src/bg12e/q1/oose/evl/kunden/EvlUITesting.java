@@ -1,4 +1,4 @@
-package bg12e.q1.oose.evl;
+package bg12e.q1.oose.evl.kunden;
 
 import java.util.Random;
 

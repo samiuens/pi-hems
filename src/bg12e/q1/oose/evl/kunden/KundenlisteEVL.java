@@ -1,4 +1,4 @@
-package bg12e.q1.oose.evl;
+package bg12e.q1.oose.evl.kunden;
 
 public class KundenlisteEVL {
     private int anzahl;

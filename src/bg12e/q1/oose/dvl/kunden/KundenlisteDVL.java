@@ -1,4 +1,4 @@
-package bg12e.q1.oose.dvl;
+package bg12e.q1.oose.dvl.kunden;
 
 public class KundenlisteDVL {
     private Knoten anfang;

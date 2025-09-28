@@ -1,15 +1,9 @@
-package bg12e.q1.oose.dvl;
+package bg12e.q1.oose.evl.kunden;
 
 public class Kunde {
     private String name;
     private boolean istVIP;
     private double umsatz;
-
-    public Kunde(String name) {
-        this.name = name;
-        this.istVIP = false;
-        this.umsatz = 0;
-    }
 
     public Kunde(String name, boolean istVIP) {
         this.name = name;
@@ -28,31 +22,25 @@ public class Kunde {
     }
 
     public String getName() {
-        return name;
+        return this.name;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public double getUmsatz() {
+        return this.umsatz;
     }
 
     public boolean isIstVIP() {
-        return istVIP;
+        return this.istVIP;
     }
 
     public void setIstVIP(boolean istVIP) {
         this.istVIP = istVIP;
     }
 
-    public double getUmsatz() {
-        return umsatz;
-    }
-
-    public void setUmsatz(double umsatz) {
-        this.umsatz = umsatz;
-    }
-
     @Override
     public String toString() {
-        return "\"%s\" (%s, Umsatz: %s)".formatted(this.name, this.istVIP, this.umsatz);
+        String isVIP = this.istVIP ? " (VIP)" : "";
+        String umsatz = this.umsatz == 0 ? "/" : Double.toString(this.umsatz);
+        return "%s%s (Umsatz: %s)".formatted(this.name, isVIP, umsatz);
     }
 }
