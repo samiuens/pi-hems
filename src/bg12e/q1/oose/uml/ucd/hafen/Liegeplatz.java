@@ -33,5 +33,59 @@ public class Liegeplatz {
         return true;
     }
 
-    public void freigeben() {}
+    public void freigeben() {
+        this.schiff = null;
+    }
+
+    public boolean istFrei() {
+        return this.schiff == null;
+    }
+
+    public static int getZaehler() {
+        return zaehler;
+    }
+
+    public static void setZaehler(int zaehler) {
+        Liegeplatz.zaehler = zaehler;
+    }
+
+    public int getNummer() {
+        return nummer;
+    }
+
+    public void setNummer(int nummer) {
+        this.nummer = nummer;
+    }
+
+    public double getNutzungsGebuehr() {
+        return nutzungsGebuehr;
+    }
+
+    public void setNutzungsGebuehr(double nutzungsGebuehr) {
+        this.nutzungsGebuehr = nutzungsGebuehr;
+    }
+
+    public boolean isHatZollstation() {
+        return hatZollstation;
+    }
+
+    public void setHatZollstation(boolean hatZollstation) {
+        this.hatZollstation = hatZollstation;
+    }
+
+    public List<Integer> getLadungsarten() {
+        return ladungsarten;
+    }
+
+    public void setLadungsarten(List<Integer> ladungsarten) {
+        this.ladungsarten = ladungsarten;
+    }
+
+    public Schiff getSchiff() {
+        return schiff;
+    }
+
+    public void setSchiff(Schiff schiff) {
+        this.schiff = schiff;
+    }
 }

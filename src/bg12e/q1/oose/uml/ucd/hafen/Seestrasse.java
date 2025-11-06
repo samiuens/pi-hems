@@ -8,9 +8,31 @@ public class Seestrasse {
         this.bezeichnung = b;
     }
 
-    public void belegen(Schiff s) {}
+    public void belegen(Schiff s) {
+        this.schiff = s;
+    }
+
+    public void freigeben() {
+        this.schiff = null;
+    }
 
     public boolean istFrei() {
-        return false;
+        return this.schiff == null;
+    }
+
+    public String getBezeichnung() {
+        return bezeichnung;
+    }
+
+    public void setBezeichnung(String bezeichnung) {
+        this.bezeichnung = bezeichnung;
+    }
+
+    public Schiff getSchiff() {
+        return schiff;
+    }
+
+    public void setSchiff(Schiff schiff) {
+        this.schiff = schiff;
     }
 }
