@@ -1,12 +1,11 @@
-package bg12e.q1.oose.uml.ucd.hafen;
+package bg12e.q1.oose.uml.ucd.hafen.v2;
 
-public class Schiff {
-    private final String id;
-    private String name;
-    private int ladung;
-    private SCHIFF_STATUS status;
-    private Liegeplatz liegeplatz;
-    private Seestrasse seestrasse;
+abstract public class Schiff {
+    protected final String id;
+    protected String name;
+    protected SCHIFF_STATUS status;
+    protected Liegeplatz liegeplatz;
+    protected Seestrasse seestrasse;
 
     public enum SCHIFF_STATUS {
         UNBEKANNT,
@@ -18,11 +17,12 @@ public class Schiff {
         ANGELEGT
     }
 
-    public Schiff(String id, String n, int l) {
+    public Schiff(String id, String n) {
         this.id = id;
         this.name = n;
-        this.ladung = l;
         this.status = SCHIFF_STATUS.UNBEKANNT;
+        this.liegeplatz = null;
+        this.seestrasse = null;
     }
 
     public void zuweisen(Seestrasse s) {
@@ -35,10 +35,6 @@ public class Schiff {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public void setLadung(int ladung) {
-        this.ladung = ladung;
     }
 
     public void setLiegeplatz(Liegeplatz liegeplatz) {
@@ -57,10 +53,6 @@ public class Schiff {
         return name;
     }
 
-    public int getLadung() {
-        return ladung;
-    }
-
     public SCHIFF_STATUS getStatus() {
         return status;
     }
@@ -76,10 +68,10 @@ public class Schiff {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append("%s (%s; Status: %s) -> Ladung: %s".formatted(this.name, this.id, this.status.toString(), HafenUI.mapLadungToString(this.ladung)));
+        sb.append("%s (%s; Status: %s)".formatted(this.name, this.id, this.status.toString()));
         if(this.seestrasse != null) {
             sb.append(" | Seestraße: %s".formatted(this.seestrasse.getBezeichnung()));
-            }
+        }
         if(this.liegeplatz != null) {
             sb.append(" | Liegeplatz-Nummer: %s".formatted(this.liegeplatz.getNummer()));
         }

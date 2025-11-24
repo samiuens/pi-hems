@@ -1,6 +1,4 @@
-package bg12e.q1.oose.uml.ucd.hafen;
-
-import java.util.Objects;
+package bg12e.q1.oose.uml.ucd.hafen.v2;
 
 public class HafenUI {
     private final HafenLeitstelle hls;
@@ -35,24 +33,35 @@ public class HafenUI {
     public HafenUI() {
         this.hls = new HafenLeitstelle("Test");
 
-        Schiff s1 = new Schiff("123", "Schiff 1", mapLadungToInt(FRACHTLADUNGEN.FAHRZEUGE));
-        hls.hinzufuegen(s1);
-        hls.anmelden(s1);
+        Schiff fs1 = new Fschiff("123", "Test 1", mapLadungToInt(FRACHTLADUNGEN.CONTAINER));
+        hls.hinzufuegen(fs1);
+        hls.anmelden(fs1);
+
+        Schiff ps1 = new Pschiff("321", "Test 2", 250);
+        hls.hinzufuegen(ps1);
+        hls.anmelden(ps1);
 
         Seestrasse ss1 = new Seestrasse("Seestraße 1");
         hls.hinzufuegen(ss1);
-        hls.zuweisenSeestrasse(s1.getName());
+
+        Seestrasse ss2 = new Seestrasse("Seestraße 2");
+        hls.hinzufuegen(ss2);
+
+        hls.zuweisenSeestrasse(fs1.getName());
+        hls.zuweisenSeestrasse(ps1.getName());
 
         Liegeplatz lp1 = new Liegeplatz(500, mapLadungToInt(FRACHTLADUNGEN.FLUESSIGLADUNG));
         Liegeplatz lp2 = new Liegeplatz(200, mapLadungToInt(FRACHTLADUNGEN.FAHRZEUGE));
+        Liegeplatz lp3 = new Liegeplatz(100, mapLadungToInt(FRACHTLADUNGEN.CONTAINER));
         hls.hinzufuegen(lp1);
         hls.hinzufuegen(lp2);
+        //hls.hinzufuegen(lp3);
 
-        hls.zuweisenSeestrasse(s1.getName());
-        hls.zuweisenLiegeplatz(s1);
 
         System.out.println(hls.getLogs());
-        System.out.println(s1);
+        System.out.println("_______________________");
+        System.out.println(fs1);
+        System.out.println(ps1);
     }
 
     public static void main(String[] args) {

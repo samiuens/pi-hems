@@ -1,4 +1,4 @@
-package bg12e.q1.oose.uml.ucd.hafen;
+package bg12e.q1.oose.uml.ucd.hafen.v1;
 
 public class Seestrasse {
     private String bezeichnung;
